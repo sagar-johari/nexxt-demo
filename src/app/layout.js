@@ -7,6 +7,7 @@ import Head from "next/head";
 import { CiTwitter } from "react-icons/ci";
 import { FiGithub } from "react-icons/fi";
 import { useState,useEffect } from "react";
+import CustomCursor from "./components/CustomCursor";
 
 export default function RootLayout({ children }) {
   const [isScrollingUp, setIsScrollingUp] = useState(true);
@@ -15,7 +16,6 @@ export default function RootLayout({ children }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Check if user is at the bottom of the page
       const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight;
 
       if (isBottom) {
@@ -25,14 +25,11 @@ export default function RootLayout({ children }) {
       }
 
       if (window.scrollY < lastScrollY  && !isAtBottom) {
-        // If scrolling up more than 20px from the last scroll position and not at the bottom
         setIsScrollingUp(true);
       } else if (window.scrollY > lastScrollY && !isAtBottom) {
-        // If scrolling down more than 20px from the last scroll position and not at the bottom
         setIsScrollingUp(false);
       }
 
-      // Update the last scroll position
       setLastScrollY(window.scrollY);
     };
 
@@ -43,30 +40,24 @@ export default function RootLayout({ children }) {
     };
   }, [lastScrollY, isAtBottom]);
 
+  function handleCheckChange(e) {
+    const isChecked = e.target.checked;
+    document.documentElement.style.setProperty(
+      '--background',
+      isChecked ? '#171717' : '#ffffff'
+    );
+    document.documentElement.style.setProperty(
+      '--foreground',
+      isChecked ? '#ffffff' : '#171717'
+    );
+  }
 
+  
 
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const currentScrollY = window.scrollY;
-
-  //     if (currentScrollY > lastScrollY) {
-  //       // Scrolling down
-  //       setIsScrollingUp(false);
-  //     } else {
-  //       // Scrolling up
-  //       setIsScrollingUp(true);
-  //     }
-
-  //     setLastScrollY(currentScrollY);
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, [lastScrollY]);
   return (
     <html lang="en">
+
+<CustomCursor/> 
       <Head>
         <link
           href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/css/ionicons.min.css"
@@ -74,8 +65,8 @@ export default function RootLayout({ children }) {
         />
       </Head>
       <body>
-      
-    <header className={`fixed top-0 left-5 right-5 z-50 bg-white  transition-transform duration-300 ${
+      <div className="filter-color"></div>
+    <header className={`fixed top-0 left-5 right-5 z-50  transition-transform duration-300 ${
           isScrollingUp ? "translate-y-0" : "-translate-y-full"
         }`} >
       {/* Logo */}
@@ -89,14 +80,14 @@ export default function RootLayout({ children }) {
         </div>
       </div>
 
-      <div class="flex items-center justify-center">
-  <label class="relative inline-block w-14 h-8">
-    <input type="checkbox" class="peer hidden" />
+      <div className="flex items-center justify-center">
+  <label className="relative inline-block w-14 h-8">
+    <input type="checkbox" onChange={handleCheckChange} className="peer hidden" />
     <span
-      class="absolute inset-0 rounded-full border-2 border-white bg-black transition peer-checked:bg-white peer-checked:border-black"
+      className="absolute inset-0 rounded-full border-2 border-white bg-black transition peer-checked:bg-white peer-checked:border-black"
     ></span>
     <span
-      class="absolute top-1 left-1 h-6 w-6 rounded-full bg-white transition peer-checked:translate-x-6 peer-checked:bg-black border-black"
+      className="absolute top-1 left-1 h-6 w-6 rounded-full bg-white transition peer-checked:translate-x-6 peer-checked:bg-black border-black"
     ></span>
   </label>
 </div>

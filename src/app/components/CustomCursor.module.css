@@ -1,0 +1,27 @@
+/* CustomCursor.module.css */
+
+.cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px; /* Adjust size */
+    height: 20px;
+    background-color: rgb(255, 82, 82); /* Adjust color */
+    border-radius: 50%; /* Makes it a sphere */
+    pointer-events: none; /* Ensures clicks pass through */
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s; /* Smooth transition for disappearing cursor */
+}
+
+.cursorHidden {
+    opacity: 0; /* Hides the cursor when applied */
+}
+
+/* Class to change the color of the link to red */
+.linkHover {
+    color: red !important;
+}
+
+/* Optional: smooth transformation of links */
+
