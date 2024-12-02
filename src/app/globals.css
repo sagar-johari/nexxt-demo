@@ -95,10 +95,40 @@ header > *{
 .peer .rounded-full{
 border: 2px solid #000;
 }
-a:hover {
-    color: red !important;
-    font-weight: 500;
-  }
+
 a {
   transition: transform 0.1s ease-out;
 }
+
+/* CustomCursor.module.css */
+/* .cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.2s ease;
+  z-index: 9999;
+} */
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.2s ease, background-color 0.2s ease; /* Smooth animation */
+  z-index: 9999;
+}
+
+.cursor.hover {
+  transform: scale(1.2);
+  background-color: red; /* Optional: Change color or style when hovering */
+}
+

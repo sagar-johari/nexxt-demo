@@ -57,14 +57,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
 
-<CustomCursor/> 
       <Head>
         <link
           href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/css/ionicons.min.css"
           rel="stylesheet"
-        />
+          />
       </Head>
       <body>
+          <CustomCursor/> 
       <div className="filter-color"></div>
     <header className={`fixed top-0 left-5 right-5 z-50  transition-transform duration-300 ${
           isScrollingUp ? "translate-y-0" : "-translate-y-full"
